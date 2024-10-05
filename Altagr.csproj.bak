@@ -1,0 +1,518 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F4B5B2F7-F523-4EB7-ACA8-3A39203E2993}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Altagr</RootNamespace>
+    <AssemblyName>Altagr</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Accessibility" />
+    <Reference Include="DevExpress.Data.Desktop.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Data.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Printing.v20.1.Core, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Sparkline.v20.1.Core, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraBars.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGrid.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraLayout.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraPrinting.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraReports.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraScheduler.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraScheduler.v20.1.Core, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraTreeList.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraVerticalGrid.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="EBS, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\trtr\share\Dll\EBS.dll</HintPath>
+    </Reference>
+    <Reference Include="EBS.Accounts, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>G:\المدارس\Client\EBS.Accounts.dll</HintPath>
+    </Reference>
+    <Reference Include="EBS.Cheques">
+      <HintPath>G:\المدارس\Client\EBS.Cheques.dll</HintPath>
+    </Reference>
+    <Reference Include="EBS.DatabaseManagement">
+      <HintPath>G:\المدارس\Client\EBS.DatabaseManagement.dll</HintPath>
+    </Reference>
+    <Reference Include="EBS.LSettings, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>G:\المدارس\Client\EBS.LSettings.dll</HintPath>
+    </Reference>
+    <Reference Include="EBS.Security">
+      <HintPath>G:\المدارس\Client\EBS.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Logging, Version=1.1.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Logging.1.1.2\lib\net451\Microsoft.IdentityModel.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Tokens, Version=5.1.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Tokens.5.1.2\lib\net451\Microsoft.IdentityModel.Tokens.dll</HintPath>
+    </Reference>
+    <Reference Include="Nancy, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nancy.2.0.0\lib\net452\Nancy.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp, Version=106.12.0.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.106.12.0\lib\net452\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Annotations.4.4.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Common, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.Common.4.3.0\lib\net451\System.Data.Common.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Data.SqlClient, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SqlClient.4.3.0\lib\net46\System.Data.SqlClient.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IdentityModel.Tokens.Jwt, Version=5.1.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.5.1.2\lib\net451\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net" />
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="TableDependency.SqlClient, Version=8.5.8.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SqlTableDependency.8.5.8\lib\net451\TableDependency.SqlClient.dll</HintPath>
+    </Reference>
+    <Reference Include="Twilio, Version=5.66.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Twilio.5.66.0\lib\net451\Twilio.dll</HintPath>
+    </Reference>
+    <Reference Include="WeifenLuo.WinFormsUI.Docking">
+      <HintPath>..\..\trtr\share\Dll\dd\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Class\DataBaseWatcher.cs" />
+    <Compile Include="Class\Master.cs" />
+    <Compile Include="Class\ScreensAccessProfile.cs" />
+    <Compile Include="Class\Session.cs" />
+    <Compile Include="Class\UserSettingsTemplate.cs" />
+    <Compile Include="DAL\db.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>db.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form2.Designer.cs">
+      <DependentUpon>Form2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form3.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Form3.Designer.cs">
+      <DependentUpon>Form3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reporting\rpt_Invoice.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reporting\rpt_Invoice.Designer.cs">
+      <DependentUpon>rpt_Invoice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\XtraUserControl1.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\XtraUserControl1.Designer.cs">
+      <DependentUpon>XtraUserControl1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForms\frmAccessProfile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForms\frmAccessProfile.Designer.cs">
+      <DependentUpon>frmAccessProfile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForms\frmAccessProfileList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForms\frmAccessProfileList.Designer.cs">
+      <DependentUpon>frmAccessProfileList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForms\frmAccounts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForms\frmAccounts.Designer.cs">
+      <DependentUpon>frmAccounts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForms\frmAccountsDelegation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForms\frmAccountsDelegation.Designer.cs">
+      <DependentUpon>frmAccountsDelegation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForms\frmCurrencies.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForms\frmCurrencies.Designer.cs">
+      <DependentUpon>frmCurrencies.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForms\frmMasterList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForms\frmMasterList.Designer.cs">
+      <DependentUpon>frmMasterList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForms\frmReportsProduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForms\frmReportsProduct.Designer.cs">
+      <DependentUpon>frmReportsProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForms\frmSalesInvoices.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForms\frmSalesInvoices.Designer.cs">
+      <DependentUpon>frmSalesInvoices.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForms\frmPurchaseInvoices.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForms\frmPurchaseInvoices.Designer.cs">
+      <DependentUpon>frmPurchaseInvoices.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForms\frmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForms\frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForms\frmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForms\frmMain.Designer.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForms\frmMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForms\frmMaster.Designer.cs">
+      <DependentUpon>frmMaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForms\frmProduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForms\frmProduct.Designer.cs">
+      <DependentUpon>frmProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForms\frmProductLists.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForms\frmProductLists.Designer.cs">
+      <DependentUpon>frmProductLists.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForms\frmReports.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForms\frmReports.Designer.cs">
+      <DependentUpon>frmReports.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForms\frmSalesInvoicesList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForms\frmSalesInvoicesList.Designer.cs">
+      <DependentUpon>frmSalesInvoicesList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForms\frmSMS_CustomersDirectory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForms\frmSMS_CustomersDirectory.Designer.cs">
+      <DependentUpon>frmSMS_CustomersDirectory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForms\frmSMS_CustomersDirectoryList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForms\frmSMS_CustomersDirectoryList.Designer.cs">
+      <DependentUpon>frmSMS_CustomersDirectoryList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForms\frmSMS_CustomersSubscribing.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForms\frmSMS_CustomersSubscribing.Designer.cs">
+      <DependentUpon>frmSMS_CustomersSubscribing.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForms\frmSMS_SendMessage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForms\frmSMS_SendMessage.Designer.cs">
+      <DependentUpon>frmSMS_SendMessage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForms\frmSpending.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForms\frmSpending.Designer.cs">
+      <DependentUpon>frmSpending.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForms\frmReceiving.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForms\frmReceiving.Designer.cs">
+      <DependentUpon>frmReceiving.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForms\frmUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForms\frmUser.Designer.cs">
+      <DependentUpon>frmUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForms\frmUserList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForms\frmUserList.Designer.cs">
+      <DependentUpon>frmUserList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForms\frmProductCategory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForms\frmProductCategory.Designer.cs">
+      <DependentUpon>frmProductCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForms\frmUserSettingsProfile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForms\frmUserSettingsProfile.Designer.cs">
+      <DependentUpon>frmUserSettingsProfile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForms\frmUserSettingsProfileList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForms\frmUserSettingsProfileList.Designer.cs">
+      <DependentUpon>frmUserSettingsProfileList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForms\frm_Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForms\frm_Main.Designer.cs">
+      <DependentUpon>frm_Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForms\SplashScreen1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForms\SplashScreen1.Designer.cs">
+      <DependentUpon>SplashScreen1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForms\StartSplash.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForms\StartSplash.Designer.cs">
+      <DependentUpon>StartSplash.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form2.resx">
+      <DependentUpon>Form2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form3.resx">
+      <DependentUpon>Form3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="UserControls\XtraUserControl1.resx">
+      <DependentUpon>XtraUserControl1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForms\frmAccessProfile.resx">
+      <DependentUpon>frmAccessProfile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForms\frmAccessProfileList.resx">
+      <DependentUpon>frmAccessProfileList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForms\frmAccounts.resx">
+      <DependentUpon>frmAccounts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForms\frmAccountsDelegation.resx">
+      <DependentUpon>frmAccountsDelegation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForms\frmCurrencies.resx">
+      <DependentUpon>frmCurrencies.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForms\frmMasterList.resx">
+      <DependentUpon>frmMasterList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForms\frmReportsProduct.resx">
+      <DependentUpon>frmReportsProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForms\frmSalesInvoices.resx">
+      <DependentUpon>frmSalesInvoices.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForms\frmPurchaseInvoices.resx">
+      <DependentUpon>frmPurchaseInvoices.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForms\frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForms\frmMain.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForms\frmMaster.resx">
+      <DependentUpon>frmMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForms\frmProduct.resx">
+      <DependentUpon>frmProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForms\frmProductLists.resx">
+      <DependentUpon>frmProductLists.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForms\frmReports.resx">
+      <DependentUpon>frmReports.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForms\frmSalesInvoicesList.resx">
+      <DependentUpon>frmSalesInvoicesList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForms\frmSMS_CustomersDirectory.resx">
+      <DependentUpon>frmSMS_CustomersDirectory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForms\frmSMS_CustomersDirectoryList.resx">
+      <DependentUpon>frmSMS_CustomersDirectoryList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForms\frmSMS_CustomersSubscribing.resx">
+      <DependentUpon>frmSMS_CustomersSubscribing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForms\frmSMS_SendMessage.resx">
+      <DependentUpon>frmSMS_SendMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForms\frmSpending.resx">
+      <DependentUpon>frmSpending.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForms\frmReceiving.resx">
+      <DependentUpon>frmReceiving.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForms\frmProductCategory.resx">
+      <DependentUpon>frmProductCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForms\frmUser.resx">
+      <DependentUpon>frmUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForms\frmUserList.resx">
+      <DependentUpon>frmUserList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForms\frmUserSettingsProfile.resx">
+      <DependentUpon>frmUserSettingsProfile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForms\frmUserSettingsProfileList.resx">
+      <DependentUpon>frmUserSettingsProfileList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForms\frm_Main.resx">
+      <DependentUpon>frm_Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForms\SplashScreen1.resx">
+      <DependentUpon>SplashScreen1.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="DAL\db.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>db.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DAL\db.dbml.layout">
+      <DependentUpon>db.dbml</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EBS.Class.Controls\EBS.Class.Controls.csproj">
+      <Project>{44f5f380-9a3c-4b2a-b27b-a5197d446e21}</Project>
+      <Name>EBS.Class.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NumberToText\NumberToText.csproj">
+      <Project>{326e2040-e394-49bb-94d0-90ca79f79fdf}</Project>
+      <Name>NumberToText</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\bo_sale.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\changefontstyle.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\changefontstyle1.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\actions_window.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bo_user.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\allowuserstoeditranges.svg" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

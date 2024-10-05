@@ -1,0 +1,1005 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="sejel_end_project" Class="dbDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.;Initial Catalog=sejel_end_project;Persist Security Info=True;User ID=sa" SettingsObjectName="Altagr.Properties.Settings" SettingsPropertyName="sejel_end_projectConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.tblCurrencies" Member="tblCurrencies">
+    <Type Name="tblCurrency">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CurrencyName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ArabicCode" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="EnglishCode" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="CurrencyType" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Notes" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="UserID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="EnterTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="tblCurrency_tblCurrenciesPrice" Member="tblCurrenciesPrices" ThisKey="ID" OtherKey="SourceCurrencyID" Type="tblCurrenciesPrice" />
+      <Association Name="tblCurrency_tblCurrenciesPrice1" Member="tblCurrenciesPrices1" ThisKey="ID" OtherKey="TargetCurrencyID" Type="tblCurrenciesPrice" />
+      <Association Name="tblCurrency_tblCurrenciesPricesUpdate" Member="tblCurrenciesPricesUpdates" ThisKey="ID" OtherKey="SourceCurrencyID" Type="tblCurrenciesPricesUpdate" />
+      <Association Name="tblCurrency_tblCurrenciesPricesUpdate1" Member="tblCurrenciesPricesUpdates1" ThisKey="ID" OtherKey="TargetCurrencyID" Type="tblCurrenciesPricesUpdate" />
+      <Association Name="tblCurrency_tblEntriesDetail" Member="tblEntriesDetails" ThisKey="ID" OtherKey="CurrencyID" Type="tblEntriesDetail" />
+      <Association Name="tblCurrency_tblReceiving" Member="tblReceivings" ThisKey="ID" OtherKey="CurrencyID" Type="tblReceiving" />
+      <Association Name="tblCurrency_tblReceiving1" Member="tblReceivings1" ThisKey="ID" OtherKey="ExchangeCurrencyID" Type="tblReceiving" />
+      <Association Name="tblCurrency_tblSpending" Member="tblSpendings" ThisKey="ID" OtherKey="CurrencyID" Type="tblSpending" />
+      <Association Name="tblCurrency_tblSpending1" Member="tblSpendings1" ThisKey="ID" OtherKey="ExchangeCurrencyID" Type="tblSpending" />
+      <Association Name="tblUser_tblCurrency" Member="tblUser" ThisKey="UserID" OtherKey="ID" Type="tblUser" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblCurrenciesPrices" Member="tblCurrenciesPrices">
+    <Type Name="tblCurrenciesPrice">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SourceCurrencyID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="TargetCurrencyID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="ExchangePrice" Type="System.Decimal" DbType="Decimal(18,6) NOT NULL" CanBeNull="false" />
+      <Column Name="MaxExchangePrice" Type="System.Decimal" DbType="Decimal(18,6) NOT NULL" CanBeNull="false" />
+      <Column Name="MinExchangePrice" Type="System.Decimal" DbType="Decimal(18,6) NOT NULL" CanBeNull="false" />
+      <Column Name="Notes" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="UserID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="EnterTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="tblCurrency_tblCurrenciesPrice" Member="tblCurrency" ThisKey="SourceCurrencyID" OtherKey="ID" Type="tblCurrency" IsForeignKey="true" />
+      <Association Name="tblCurrency_tblCurrenciesPrice1" Member="tblCurrency1" ThisKey="TargetCurrencyID" OtherKey="ID" Type="tblCurrency" IsForeignKey="true" />
+      <Association Name="tblUser_tblCurrenciesPrice" Member="tblUser" ThisKey="UserID" OtherKey="ID" Type="tblUser" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblCurrenciesPricesUpdates" Member="tblCurrenciesPricesUpdates">
+    <Type Name="tblCurrenciesPricesUpdate">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ParentID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="SourceCurrencyID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="TargetCurrencyID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="OldExchangePrice" Type="System.Decimal" DbType="Decimal(18,6) NOT NULL" CanBeNull="false" />
+      <Column Name="NewExchangeName" Type="System.Decimal" DbType="Decimal(18,6)" CanBeNull="true" />
+      <Column Name="MaxExchangePrice" Type="System.Decimal" DbType="Decimal(18,6)" CanBeNull="true" />
+      <Column Name="NewMaxExchangePrice" Type="System.Decimal" DbType="Decimal(18,6)" CanBeNull="true" />
+      <Column Name="MinExchangePrice" Type="System.Decimal" DbType="Decimal(18,6)" CanBeNull="true" />
+      <Column Name="NewMinExchangePrice" Type="System.Decimal" DbType="Decimal(18,6)" CanBeNull="true" />
+      <Column Name="Notes" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="UserID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="EnterTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TheDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="tblCurrency_tblCurrenciesPricesUpdate" Member="tblCurrency" ThisKey="SourceCurrencyID" OtherKey="ID" Type="tblCurrency" IsForeignKey="true" />
+      <Association Name="tblCurrency_tblCurrenciesPricesUpdate1" Member="tblCurrency1" ThisKey="TargetCurrencyID" OtherKey="ID" Type="tblCurrency" IsForeignKey="true" />
+      <Association Name="tblUser_tblCurrenciesPricesUpdate" Member="tblUser" ThisKey="UserID" OtherKey="ID" Type="tblUser" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblDocuments" Member="tblDocuments">
+    <Type Name="tblDocument">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DocumentName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TableName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ViewName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="IsHasFund" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsHasEntry" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ISHaveArchive" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Notes" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="UserID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="EnterTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="tblDocument_tblEntry" Member="tblEntries" ThisKey="ID" OtherKey="DocumentID" Type="tblEntry" />
+      <Association Name="tblUser_tblDocument" Member="tblUser" ThisKey="UserID" OtherKey="ID" Type="tblUser" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblEntries" Member="tblEntries">
+    <Type Name="tblEntry">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="RowVersion" Type="System.Data.Linq.Binary" DbType="rowversion" CanBeNull="true" IsVersion="true" />
+      <Column Name="PrevRowVersion" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="EntryNumber" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="DocumentID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="RecordNumber" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="RecordID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="TheDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Notes" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="UserID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Debited" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Prints" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="EnterTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ParentID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="TheYear" Type="System.Int32" DbType="Int" IsDbGenerated="true" CanBeNull="true" />
+      <Association Name="tblEntry_tblEntry" Member="tblEntries" ThisKey="ID" OtherKey="ParentID" Type="tblEntry" />
+      <Association Name="tblEntry_tblEntriesDetail" Member="tblEntriesDetails" ThisKey="ID" OtherKey="ParentID" Type="tblEntriesDetail" />
+      <Association Name="tblEntry_tblReceiving" Member="tblReceivings" ThisKey="ID" OtherKey="EntryID" Type="tblReceiving" />
+      <Association Name="tblEntry_tblSpending" Member="tblSpendings" ThisKey="ID" OtherKey="EntryID" Type="tblSpending" />
+      <Association Name="tblEntry_tblSalesInvoice" Member="tblSalesInvoices" ThisKey="ID" OtherKey="EntryID" Type="tblSalesInvoice" />
+      <Association Name="tblEntry_tblPurchaseInvoice" Member="tblPurchaseInvoices" ThisKey="ID" OtherKey="EntryID" Type="tblPurchaseInvoice" />
+      <Association Name="tblDocument_tblEntry" Member="tblDocument" ThisKey="DocumentID" OtherKey="ID" Type="tblDocument" IsForeignKey="true" />
+      <Association Name="tblEntry_tblEntry" Member="tblEntry1" ThisKey="ParentID" OtherKey="ID" Type="tblEntry" IsForeignKey="true" />
+      <Association Name="tblUser_tblEntry" Member="tblUser" ThisKey="UserID" OtherKey="ID" Type="tblUser" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblEntriesDetails" Member="tblEntriesDetails">
+    <Type Name="tblEntriesDetail">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="RowVersion" Type="System.Data.Linq.Binary" DbType="rowversion" CanBeNull="true" IsVersion="true" />
+      <Column Name="PrevRowVersion" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="ParentID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="EntryIndex" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="Amount" Type="System.Decimal" DbType="Decimal(20,4)" CanBeNull="true" />
+      <Column Name="CurrencyID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="MCAmount" Type="System.Decimal" DbType="Decimal(20,4)" CanBeNull="true" />
+      <Column Name="AccountID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="Notes" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="DetailedAccountID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Association Name="tblCurrency_tblEntriesDetail" Member="tblCurrency" ThisKey="CurrencyID" OtherKey="ID" Type="tblCurrency" IsForeignKey="true" />
+      <Association Name="tblEntry_tblEntriesDetail" Member="tblEntry" ThisKey="ParentID" OtherKey="ID" Type="tblEntry" IsForeignKey="true" DeleteRule="SET NULL" />
+      <Association Name="tblAccounts_tblEntriesDetail" Member="tblAccount" ThisKey="AccountID" OtherKey="ID" Type="tblAccounts" IsForeignKey="true" />
+      <Association Name="tblAccounts_tblEntriesDetail1" Member="tblAccounts" Storage="_tblAccount1" ThisKey="DetailedAccountID" OtherKey="ID" Type="tblAccounts" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblLSCashInvoices" Member="tblLSCashInvoices">
+    <Type Name="tblLSCashInvoice">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="tblLSCashInvoice_tblReceiving" Member="tblReceivings" ThisKey="ID" OtherKey="TheMethod" Type="tblReceiving" />
+      <Association Name="tblLSCashInvoice_tblSpending" Member="tblSpendings" ThisKey="ID" OtherKey="TheMethod" Type="tblSpending" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblLSUnit" Member="tblLSUnits">
+    <Type Name="tblLSUnit">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="tblLSUnit_tblUnit" Member="tblUnits" ThisKey="ID" OtherKey="UnitID" Type="tblUnit" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblReceiving" Member="tblReceivings">
+    <Type Name="tblReceiving">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="RowVersion" Type="System.Data.Linq.Binary" DbType="rowversion" CanBeNull="true" IsVersion="true" />
+      <Column Name="PrevRowVersion" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="TheNumber" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="TheDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TheMethod" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Amount" Type="System.Decimal" DbType="Decimal(18,6) NOT NULL" CanBeNull="false" />
+      <Column Name="CurrencyID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="AccountID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="ExchangeAmount" Type="System.Decimal" DbType="Decimal(18,6) NOT NULL" CanBeNull="false" />
+      <Column Name="ExchangeCurrencyID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="ExchangeAccountID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="Notes" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Delivery" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="Prints" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="EntryID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="TheYear" Type="System.Int32" DbType="Int" IsDbGenerated="true" CanBeNull="true" />
+      <Column Name="UserID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="EnterTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="tblLSCashInvoice_tblReceiving" Member="tblLSCashInvoice" ThisKey="TheMethod" OtherKey="ID" Type="tblLSCashInvoice" IsForeignKey="true" />
+      <Association Name="tblCurrency_tblReceiving" Member="tblCurrency" ThisKey="CurrencyID" OtherKey="ID" Type="tblCurrency" IsForeignKey="true" />
+      <Association Name="tblCurrency_tblReceiving1" Member="tblCurrency1" ThisKey="ExchangeCurrencyID" OtherKey="ID" Type="tblCurrency" IsForeignKey="true" />
+      <Association Name="tblEntry_tblReceiving" Member="tblEntry" ThisKey="EntryID" OtherKey="ID" Type="tblEntry" IsForeignKey="true" />
+      <Association Name="tblAccounts_tblReceiving" Member="tblAccount" ThisKey="ExchangeAccountID" OtherKey="ID" Type="tblAccounts" IsForeignKey="true" />
+      <Association Name="tblAccounts_tblReceiving1" Member="tblAccounts" Storage="_tblAccount1" ThisKey="AccountID" OtherKey="ID" Type="tblAccounts" IsForeignKey="true" />
+      <Association Name="tblUser_tblReceiving" Member="tblUser" ThisKey="UserID" OtherKey="ID" Type="tblUser" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblUnits" Member="tblUnits">
+    <Type Name="tblUnit">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ProductID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="UnitID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="packaging" Type="System.Decimal" DbType="Decimal(18,3)" CanBeNull="true" />
+      <Column Name="PriceCost" Type="System.Decimal" DbType="Decimal(18,6)" CanBeNull="true" />
+      <Column Name="PartingPrice" Type="System.Decimal" DbType="Decimal(18,6)" CanBeNull="true" />
+      <Column Name="AltogetherPrice" Type="System.Decimal" DbType="Decimal(18,6)" CanBeNull="true" />
+      <Column Name="SpecialPrice" Type="System.Decimal" DbType="Decimal(18,6)" CanBeNull="true" />
+      <Column Name="DescountValue" Type="System.Decimal" DbType="Decimal(18,6)" CanBeNull="true" />
+      <Column Name="DescountPercent" Type="System.Decimal" DbType="Decimal(18,6)" CanBeNull="true" />
+      <Column Name="Barcod" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="MaxUnitID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="UserID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="EnterTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Status" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="tblLSUnit_tblUnit" Member="tblLSUnit" ThisKey="UnitID" OtherKey="ID" Type="tblLSUnit" IsForeignKey="true" />
+      <Association Name="tblProducts_tblUnit" Member="tblProducts" Storage="_tblProduct" ThisKey="ProductID" OtherKey="ID" Type="tblProducts" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vewAccounts" Member="vewAccounts">
+    <Type Name="vewAccount">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="[الحساب الأب]" Member="الحساب_الأب" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="[اسم الحساب]" Member="اسم_الحساب" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="FatherNumber" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="[رقم الحساب]" Member="رقم_الحساب" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="[نوع الحساب]" Member="نوع_الحساب" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="[الحساب الختامي]" Member="الحساب_الختامي" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="المستخدم" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="[وقت الإدخال]" Member="وقت_الإدخال" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UserID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vewCurrencies" Member="vewCurrencies">
+    <Type Name="vewCurrency">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="[اسم العملة]" Member="اسم_العملة" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[الرمز العربي]" Member="الرمز_العربي" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="[الرمز الأجنبي]" Member="الرمز_الأجنبي" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="ملاحظات" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="المستخدم" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[وقت الإدخال]" Member="وقت_الإدخال" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UserID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vewCurrencies_CurrenciesPrices" Member="vewCurrencies_CurrenciesPrices">
+    <Type Name="vewCurrencies_CurrenciesPrice">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="[اسم العملة]" Member="اسم_العملة" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[الرمز العربي]" Member="الرمز_العربي" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="[الرمز الأجنبي]" Member="الرمز_الأجنبي" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="[نوع العملة]" Member="نوع_العملة" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="[سعر التحويل]" Member="سعر_التحويل" Type="System.Decimal" DbType="Decimal(18,6) NOT NULL" CanBeNull="false" />
+      <Column Name="[ أقل سعر التحويل]" Member="_أقل_سعر_التحويل" Type="System.Decimal" DbType="Decimal(18,6) NOT NULL" CanBeNull="false" />
+      <Column Name="[ أعلى سعر التحويل]" Member="_أعلى_سعر_التحويل" Type="System.Decimal" DbType="Decimal(18,6) NOT NULL" CanBeNull="false" />
+      <Column Name="ملاحظات" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="المستخدم" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[وقت الإدخال]" Member="وقت_الإدخال" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UserID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="SourceCurrencyID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="TargetCurrencyID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="PricesID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="PricesUserID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="Notes" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vewCurrenciesPrices" Member="vewCurrenciesPrices">
+    <Type Name="vewCurrenciesPrice">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="[تحويل من]" Member="تحويل_من" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[تحويل إلى]" Member="تحويل_إلى" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[سعر التحويل]" Member="سعر_التحويل" Type="System.Decimal" DbType="Decimal(18,6) NOT NULL" CanBeNull="false" />
+      <Column Name="[ أقل سعر التحويل]" Member="_أقل_سعر_التحويل" Type="System.Decimal" DbType="Decimal(18,6) NOT NULL" CanBeNull="false" />
+      <Column Name="[ أعلى سعر التحويل]" Member="_أعلى_سعر_التحويل" Type="System.Decimal" DbType="Decimal(18,6) NOT NULL" CanBeNull="false" />
+      <Column Name="ملاحظات" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="المستخدم" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[وقت الإدخال]" Member="وقت_الإدخال" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UserID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="[جهة سعر الصرف]" Member="جهة_سعر_الصرف" Type="System.String" DbType="VarChar(6) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vewEntries" Member="vewEntries">
+    <Type Name="vewEntry">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="RowVersion" Type="System.Data.Linq.Binary" DbType="rowversion" CanBeNull="true" IsVersion="true" />
+      <Column Name="PrevRowVersion" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="[رقم القيد]" Member="رقم_القيد" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="[رقم المستند]" Member="رقم_المستند" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="[نوع المستند]" Member="نوع_المستند" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="RecordID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="التاريخ" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ملاحظات" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="UserID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="مرحل" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Prints" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="EnterTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vewEntriesDetails" Member="vewEntriesDetails">
+    <Type Name="vewEntriesDetail">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="RowVersion" Type="System.Data.Linq.Binary" DbType="rowversion" CanBeNull="true" IsVersion="true" />
+      <Column Name="PrevRowVersion" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="ParentID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="المبلغ" Type="System.Decimal" DbType="Decimal(20,4)" CanBeNull="true" />
+      <Column Name="CurrencyID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="MCAmount" Type="System.Decimal" DbType="Decimal(20,4)" CanBeNull="true" />
+      <Column Name="AccountID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="ملاحظات" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.VewM1" Member="VewM1s">
+    <Type Name="VewM1">
+      <Column Name="AccountName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CurrencyName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TheDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.VewM2" Member="VewM2s">
+    <Type Name="VewM2">
+      <Column Name="AccountName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="MCAmount" Type="System.Decimal" DbType="Decimal(20,4)" CanBeNull="true" />
+      <Column Name="Amount" Type="System.Decimal" DbType="Decimal(20,4)" CanBeNull="true" />
+      <Column Name="TheDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vewMain" Member="vewMains">
+    <Type Name="vewMain">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="EntryID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="Amount" Type="System.Decimal" DbType="Decimal(20,4)" CanBeNull="true" />
+      <Column Name="CurrencyID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="CurrencyName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="MCAmount" Type="System.Decimal" DbType="Decimal(20,4)" CanBeNull="true" />
+      <Column Name="AccountID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="DetailedAccountID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="AccountName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="DetailedAccountName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="AccountNumber" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="FatherNumber" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="TheDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Notes" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="RecordNumber" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="RecordID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="UserName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="DocumentName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="مرحل" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="EnterTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.VewMain1" Member="VewMain1s">
+    <Type Name="VewMain1">
+      <Column Name="AccountID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="FatherNumber" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="AccountName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Amount" Type="System.Decimal" DbType="Decimal(38,4)" CanBeNull="true" />
+      <Column Name="CurrencyName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.VewMain2" Member="VewMain2s">
+    <Type Name="VewMain2">
+      <Column Name="AccountName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CurrencyName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="MCAmount" Type="System.Decimal" DbType="Decimal(38,4)" CanBeNull="true" />
+      <Column Name="Amount" Type="System.Decimal" DbType="Decimal(38,4)" CanBeNull="true" />
+      <Column Name="TheDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.VewMain3" Member="VewMain3s">
+    <Type Name="VewMain3">
+      <Column Name="AccountID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="FatherNumber" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="[اسم الحساب]" Member="اسم_الحساب" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[المبلغ مدين]" Member="المبلغ_مدين" Type="System.Decimal" DbType="Decimal(38,4)" CanBeNull="true" />
+      <Column Name="[مبلغ آخر تسديد]" Member="مبلغ_آخر_تسديد" Type="System.Decimal" DbType="Decimal(38,4)" CanBeNull="true" />
+      <Column Name="[مبلغ آخر تسديد بالعملة]" Member="مبلغ_آخر_تسديد_بالعملة" Type="System.Decimal" DbType="Decimal(38,4)" CanBeNull="true" />
+      <Column Name="CurrencyName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[تاريخ آخر تسديد]" Member="تاريخ_آخر_تسديد" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="[عمر الدين]" Member="عمر_الدين" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vewMainSearch" Member="vewMainSearches">
+    <Type Name="vewMainSearch">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="CurrencyID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="[رقم الحساب]" Member="رقم_الحساب" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="[اسم الحساب]" Member="اسم_الحساب" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Amount" Type="System.Decimal" DbType="Decimal(20,4)" CanBeNull="true" />
+      <Column Name="مدين" Type="System.Decimal" DbType="Decimal(20,4)" CanBeNull="true" />
+      <Column Name="دائن" Type="System.Decimal" DbType="Decimal(20,4)" CanBeNull="true" />
+      <Column Name="المبلغ" Type="System.Decimal" DbType="Decimal(20,4)" CanBeNull="true" />
+      <Column Name="العملة" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="EnglishCode" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="المقابل" Type="System.Decimal" DbType="Decimal(20,4)" CanBeNull="true" />
+      <Column Name="السعر" Type="System.Decimal" DbType="Decimal(38,18)" CanBeNull="true" />
+      <Column Name="[رقم الحساب الأب]" Member="رقم_الحساب_الأب" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="التاريخ" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ملاحظات" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="المستخدم" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[نوع المستند]" Member="نوع_المستند" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vewMainUnRelay" Member="vewMainUnRelays">
+    <Type Name="vewMainUnRelay">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="EntryID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="المبلغ" Type="System.Decimal" DbType="Decimal(20,4)" CanBeNull="true" />
+      <Column Name="CurrencyID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="العملة" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="المقابل" Type="System.Decimal" DbType="Decimal(20,4)" CanBeNull="true" />
+      <Column Name="AccountID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="DetailedAccountID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="[اسم الحساب]" Member="اسم_الحساب" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="DetailedAccountName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="[رقم الحساب]" Member="رقم_الحساب" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="FatherNumber" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="التاريخ" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ملاحظات" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="RecordNumber" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="RecordID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="UserName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="المستند" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Debited" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="EnterTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vewMainWithUndebitedIncomingTransfers" Member="vewMainWithUndebitedIncomingTransfers">
+    <Type Name="vewMainWithUndebitedIncomingTransfer">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="EntryID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="Amount" Type="System.Decimal" DbType="Decimal(20,4)" CanBeNull="true" />
+      <Column Name="CurrencyID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="CurrencyName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="MCAmount" Type="System.Decimal" DbType="Decimal(20,4)" CanBeNull="true" />
+      <Column Name="AccountID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="AccountName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="AccountNumber" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="FatherNumber" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="TheDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Notes" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="RecordNumber" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="RecordID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="UserName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="DocumentName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vewSpending" Member="vewSpendings">
+    <Type Name="vewSpending">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="الرقم" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="التاريخ" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="[طريقة الصرف]" Member="طريقة_الصرف" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="المبلغ" Type="System.Decimal" DbType="Decimal(18,6) NOT NULL" CanBeNull="false" />
+      <Column Name="العملة" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="الصندوق" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[مبلغ الحساب]" Member="مبلغ_الحساب" Type="System.Decimal" DbType="Decimal(18,6) NOT NULL" CanBeNull="false" />
+      <Column Name="[عملة الحساب]" Member="عملة_الحساب" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[اسم الحساب]" Member="اسم_الحساب" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ملاحظات" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="مناولة" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="المستخدم" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="[وقت الإدخال]" Member="وقت_الإدخال" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="الطبعات" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="EntryID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vewUsers" Member="vewUsers">
+    <Type Name="vewUser">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="RowVersion" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="الرقم" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="[اسم المستخدم]" Member="اسم_المستخدم" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[المستخدم موقوف]" Member="المستخدم_موقوف" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="[للقراءة فقط]" Member="للقراءة_فقط" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ملاحظات" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="المستخدم" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[وقت الإدخال]" Member="وقت_الإدخال" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblAccounts" Member="tblAccounts">
+    <Type Name="tblAccounts">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FatherNumber" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="AccountName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="AccountNumber" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="AccountType" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="AccountReference" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="UserID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="EnterTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="tblAccounts_tblEntriesDetail" Member="tblEntriesDetails" ThisKey="ID" OtherKey="AccountID" Type="tblEntriesDetail" />
+      <Association Name="tblAccounts_tblEntriesDetail1" Member="tblEntriesDetails1" ThisKey="ID" OtherKey="DetailedAccountID" Type="tblEntriesDetail" />
+      <Association Name="tblAccounts_tblReceiving" Member="tblReceivings" ThisKey="ID" OtherKey="ExchangeAccountID" Type="tblReceiving" />
+      <Association Name="tblAccounts_tblReceiving1" Member="tblReceivings1" ThisKey="ID" OtherKey="AccountID" Type="tblReceiving" />
+      <Association Name="tblAccounts_tblSpending" Member="tblSpendings" ThisKey="ID" OtherKey="ExchangeAccountID" Type="tblSpending" />
+      <Association Name="tblAccounts_tblSpending1" Member="tblSpendings1" ThisKey="ID" OtherKey="AccountID" Type="tblSpending" />
+      <Association Name="tblAccounts_tblSalesInvoice" Member="tblSalesInvoices" ThisKey="ID" OtherKey="AccountID" Type="tblSalesInvoice" />
+      <Association Name="tblAccounts_tblPurchaseInvoice" Member="tblPurchaseInvoices" ThisKey="ID" OtherKey="AccountID" Type="tblPurchaseInvoice" />
+      <Association Name="tblAccounts_tblAccountsDelegation" Member="tblAccountsDelegations" ThisKey="ID" OtherKey="AccountID" Type="tblAccountsDelegation" />
+      <Association Name="tblAccounts_tblSMS_CustomersDirectory" Member="tblSMS_CustomersDirectories" ThisKey="ID" OtherKey="AccountID" Type="tblSMS_CustomersDirectory" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vewAccountsMina" Member="vewAccountsMinas">
+    <Type Name="vewAccountsMina">
+      <Column Name="[اسم الحساب]" Member="اسم_الحساب" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[نوع الحساب]" Member="نوع_الحساب" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="[الحساب الختامي]" Member="الحساب_الختامي" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="[رقم الحساب]" Member="رقم_الحساب" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="FatherNumber" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblLSTypeProduct" Member="tblLSTypeProducts">
+    <Type Name="tblLSTypeProduct">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ParentID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Association Name="tblLSTypeProduct_tblProducts" Member="tblProducts" ThisKey="ID" OtherKey="categoryID" Type="tblProducts" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblProducts" Member="tblProducts">
+    <Type Name="tblProducts">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ProductName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="EnglishProductName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ProductDesc" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="ProductImages" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Notes" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="EnterTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Type" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="categoryID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="Status" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="tblProducts_tblUnit" Member="tblUnits" ThisKey="ID" OtherKey="ProductID" Type="tblUnit" />
+      <Association Name="tblProducts_tblSalesInvoicesDetaile" Member="tblSalesInvoicesDetailes" ThisKey="ID" OtherKey="ProductID" Type="tblSalesInvoicesDetaile" />
+      <Association Name="tblProducts_tblPurchaseInvoicesDetaile" Member="tblPurchaseInvoicesDetailes" ThisKey="ID" OtherKey="ProductID" Type="tblPurchaseInvoicesDetaile" />
+      <Association Name="tblLSTypeProduct_tblProducts" Member="tblLSTypeProduct" ThisKey="categoryID" OtherKey="ID" Type="tblLSTypeProduct" IsForeignKey="true" />
+      <Association Name="tblUser_tblProducts" Member="tblUser" ThisKey="UserID" OtherKey="ID" Type="tblUser" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblSpending" Member="tblSpendings">
+    <Type Name="tblSpending">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="RowVersion" Type="System.Data.Linq.Binary" DbType="rowversion" CanBeNull="true" IsVersion="true" />
+      <Column Name="PrevRowVersion" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="TheNumber" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="TheDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TheMethod" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Amount" Type="System.Decimal" DbType="Decimal(18,6) NOT NULL" CanBeNull="false" />
+      <Column Name="CurrencyID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="AccountID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="ExchangeAmount" Type="System.Decimal" DbType="Decimal(18,6) NOT NULL" CanBeNull="false" />
+      <Column Name="ExchangeCurrencyID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="ExchangeAccountID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="Notes" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Delivery" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="Prints" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="EntryID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="TheYear" Type="System.Int32" DbType="Int" IsDbGenerated="true" CanBeNull="true" />
+      <Column Name="UserID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="EnterTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="tblLSCashInvoice_tblSpending" Member="tblLSCashInvoice" ThisKey="TheMethod" OtherKey="ID" Type="tblLSCashInvoice" IsForeignKey="true" />
+      <Association Name="tblAccounts_tblSpending" Member="tblAccounts" ThisKey="ExchangeAccountID" OtherKey="ID" Type="tblAccounts" IsForeignKey="true" />
+      <Association Name="tblAccounts_tblSpending1" Member="tblAccounts1" ThisKey="AccountID" OtherKey="ID" Type="tblAccounts" IsForeignKey="true" />
+      <Association Name="tblCurrency_tblSpending" Member="tblCurrency" ThisKey="CurrencyID" OtherKey="ID" Type="tblCurrency" IsForeignKey="true" />
+      <Association Name="tblCurrency_tblSpending1" Member="tblCurrency1" ThisKey="ExchangeCurrencyID" OtherKey="ID" Type="tblCurrency" IsForeignKey="true" />
+      <Association Name="tblEntry_tblSpending" Member="tblEntry" ThisKey="EntryID" OtherKey="ID" Type="tblEntry" IsForeignKey="true" />
+      <Association Name="tblUser_tblSpending" Member="tblUser" ThisKey="UserID" OtherKey="ID" Type="tblUser" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblSalesInvoices" Member="tblSalesInvoices">
+    <Type Name="tblSalesInvoice">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="RowVersion" Type="System.Data.Linq.Binary" DbType="rowversion" CanBeNull="true" IsVersion="true" />
+      <Column Name="PrevRowVersion" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="TheNumber" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="InvoicesType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DescountPercent" Type="System.Decimal" DbType="Decimal(10,3) NOT NULL" CanBeNull="false" />
+      <Column Name="DescountValue" Type="System.Decimal" DbType="Decimal(10,3) NOT NULL" CanBeNull="false" />
+      <Column Name="Tax" Type="System.Decimal" DbType="Decimal(10,3) NOT NULL" CanBeNull="false" />
+      <Column Name="TaxValue" Type="System.Decimal" DbType="Decimal(10,3) NOT NULL" CanBeNull="false" />
+      <Column Name="Total" Type="System.Decimal" DbType="Decimal(10,3) NOT NULL" CanBeNull="false" />
+      <Column Name="Paid" Type="System.Decimal" DbType="Decimal(10,3) NOT NULL" CanBeNull="false" />
+      <Column Name="Remaing" Type="System.Decimal" DbType="Decimal(10,3) NOT NULL" CanBeNull="false" />
+      <Column Name="Expences" Type="System.Decimal" DbType="Decimal(10,3) NOT NULL" CanBeNull="false" />
+      <Column Name="AccountID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="ExchangeAccountID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="TheDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="DelivaryDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ShippingAddress" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Notes" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="EntryID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="Prints" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TheYear" Type="System.Int32" DbType="Int" IsDbGenerated="true" CanBeNull="true" />
+      <Column Name="UserID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="EnterTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="tblSalesInvoice_tblSalesInvoicesDetaile" Member="tblSalesInvoicesDetailes" ThisKey="ID" OtherKey="ParentID" Type="tblSalesInvoicesDetaile" />
+      <Association Name="tblAccounts_tblSalesInvoice" Member="tblAccounts" ThisKey="AccountID" OtherKey="ID" Type="tblAccounts" IsForeignKey="true" />
+      <Association Name="tblEntry_tblSalesInvoice" Member="tblEntry" ThisKey="EntryID" OtherKey="ID" Type="tblEntry" IsForeignKey="true" />
+      <Association Name="tblUser_tblSalesInvoice" Member="tblUser" ThisKey="UserID" OtherKey="ID" Type="tblUser" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblPurchaseInvoices" Member="tblPurchaseInvoices">
+    <Type Name="tblPurchaseInvoice">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="RowVersion" Type="System.Data.Linq.Binary" DbType="rowversion" CanBeNull="true" IsVersion="true" />
+      <Column Name="PrevRowVersion" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="TheNumber" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="InvoicesType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DescountPercent" Type="System.Decimal" DbType="Decimal(10,3) NOT NULL" CanBeNull="false" />
+      <Column Name="DescountValue" Type="System.Decimal" DbType="Decimal(10,3) NOT NULL" CanBeNull="false" />
+      <Column Name="Tax" Type="System.Decimal" DbType="Decimal(10,3) NOT NULL" CanBeNull="false" />
+      <Column Name="TaxValue" Type="System.Decimal" DbType="Decimal(10,3) NOT NULL" CanBeNull="false" />
+      <Column Name="Total" Type="System.Decimal" DbType="Decimal(10,3) NOT NULL" CanBeNull="false" />
+      <Column Name="Paid" Type="System.Decimal" DbType="Decimal(10,3) NOT NULL" CanBeNull="false" />
+      <Column Name="Remaing" Type="System.Decimal" DbType="Decimal(10,3) NOT NULL" CanBeNull="false" />
+      <Column Name="Expences" Type="System.Decimal" DbType="Decimal(10,3) NOT NULL" CanBeNull="false" />
+      <Column Name="AccountID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="ExchangeAccountID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="TheDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="DelivaryDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ShippingAddress" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Notes" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="EntryID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="Prints" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TheYear" Type="System.Int32" DbType="Int" IsDbGenerated="true" CanBeNull="true" />
+      <Column Name="UserID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="EnterTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="tblPurchaseInvoice_tblPurchaseInvoicesDetaile" Member="tblPurchaseInvoicesDetailes" ThisKey="ID" OtherKey="ParentID" Type="tblPurchaseInvoicesDetaile" />
+      <Association Name="tblAccounts_tblPurchaseInvoice" Member="tblAccounts" ThisKey="AccountID" OtherKey="ID" Type="tblAccounts" IsForeignKey="true" />
+      <Association Name="tblEntry_tblPurchaseInvoice" Member="tblEntry" ThisKey="EntryID" OtherKey="ID" Type="tblEntry" IsForeignKey="true" />
+      <Association Name="tblUser_tblPurchaseInvoice" Member="tblUser" ThisKey="UserID" OtherKey="ID" Type="tblUser" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblSalesInvoicesDetailes" Member="tblSalesInvoicesDetailes">
+    <Type Name="tblSalesInvoicesDetaile">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ProductID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="UnitID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Quantity" Type="System.Decimal" DbType="Decimal(18,3) NOT NULL" CanBeNull="false" />
+      <Column Name="UnitPrice" Type="System.Decimal" DbType="Decimal(18,3) NOT NULL" CanBeNull="false" />
+      <Column Name="SubDescount" Type="System.Decimal" DbType="Decimal(18,3) NOT NULL" CanBeNull="false" />
+      <Column Name="TotalAMount" Type="System.Decimal" DbType="Decimal(18,3) NOT NULL" CanBeNull="false" />
+      <Column Name="DiscountValue" Type="System.Decimal" DbType="Decimal(18,3) NOT NULL" CanBeNull="false" />
+      <Column Name="ParentID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="ExpiryDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UserID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="EnterTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="tblProducts_tblSalesInvoicesDetaile" Member="tblProducts" ThisKey="ProductID" OtherKey="ID" Type="tblProducts" IsForeignKey="true" />
+      <Association Name="tblSalesInvoice_tblSalesInvoicesDetaile" Member="tblSalesInvoice" ThisKey="ParentID" OtherKey="ID" Type="tblSalesInvoice" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="tblUser_tblSalesInvoicesDetaile" Member="tblUser" ThisKey="UserID" OtherKey="ID" Type="tblUser" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblPurchaseInvoicesDetailes" Member="tblPurchaseInvoicesDetailes">
+    <Type Name="tblPurchaseInvoicesDetaile">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ProductID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="UnitID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Quantity" Type="System.Decimal" DbType="Decimal(18,3) NOT NULL" CanBeNull="false" />
+      <Column Name="UnitPrice" Type="System.Decimal" DbType="Decimal(18,3) NOT NULL" CanBeNull="false" />
+      <Column Name="SubDescount" Type="System.Decimal" DbType="Decimal(18,3) NOT NULL" CanBeNull="false" />
+      <Column Name="TotalAMount" Type="System.Decimal" DbType="Decimal(18,3) NOT NULL" CanBeNull="false" />
+      <Column Name="DiscountValue" Type="System.Decimal" DbType="Decimal(18,3) NOT NULL" CanBeNull="false" />
+      <Column Name="ParentID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="ExpiryDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UserID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="EnterTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="tblProducts_tblPurchaseInvoicesDetaile" Member="tblProducts" ThisKey="ProductID" OtherKey="ID" Type="tblProducts" IsForeignKey="true" />
+      <Association Name="tblPurchaseInvoice_tblPurchaseInvoicesDetaile" Member="tblPurchaseInvoice" ThisKey="ParentID" OtherKey="ID" Type="tblPurchaseInvoice" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="tblUser_tblPurchaseInvoicesDetaile" Member="tblUser" ThisKey="UserID" OtherKey="ID" Type="tblUser" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vewMainProductUnitQuantity" Member="vewMainProductUnitQuantities">
+    <Type Name="vewMainProductUnitQuantity">
+      <Column Name="ProductName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="UnitName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Quantity" Type="System.Decimal" DbType="Decimal(38,6)" CanBeNull="true" />
+      <Column Name="UnitsID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="ProductsID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="QuantityPurchase" Type="System.Decimal" DbType="Decimal(38,6)" CanBeNull="true" />
+      <Column Name="QuantitySales" Type="System.Decimal" DbType="Decimal(38,6)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblUserAccessProfileDetail" Member="tblUserAccessProfileDetails">
+    <Type Name="tblUserAccessProfileDetail">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ProfileID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="ScreenID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="CanShow" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CanOpen" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CanAdd" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CanEdit" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CanDelete" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CanPrint" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="EnterTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblUserAccessProfileName" Member="tblUserAccessProfileNames">
+    <Type Name="tblUserAccessProfileName">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="EnterTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblUserSettingsProfile" Member="tblUserSettingsProfiles">
+    <Type Name="tblUserSettingsProfile">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="EnterTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblUserSettingsProfileProperties" Member="tblUserSettingsProfileProperties">
+    <Type Name="tblUserSettingsProfileProperty">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ProfileID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="PropertyName" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="PropertyValue" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="UserID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="EnterTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblAccountsDelegation" Member="tblAccountsDelegations">
+    <Type Name="tblAccountsDelegation">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="AccountID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Mobile" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Phone" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="UserID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="EnterTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="tblAccounts_tblAccountsDelegation" Member="tblAccounts" ThisKey="AccountID" OtherKey="ID" Type="tblAccounts" IsForeignKey="true" />
+      <Association Name="tblUser_tblAccountsDelegation" Member="tblUser" ThisKey="UserID" OtherKey="ID" Type="tblUser" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vewPurchaseInvoices" Member="vewPurchaseInvoices">
+    <Type Name="vewPurchaseInvoice">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="TheNumber" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="ExchangeAccountName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="InvoicesType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Total" Type="System.Decimal" DbType="Decimal(10,3) NOT NULL" CanBeNull="false" />
+      <Column Name="net" Type="System.Decimal" DbType="Decimal(13,3)" CanBeNull="true" />
+      <Column Name="Paid" Type="System.Decimal" DbType="Decimal(10,3) NOT NULL" CanBeNull="false" />
+      <Column Name="Remaing" Type="System.Decimal" DbType="Decimal(10,3) NOT NULL" CanBeNull="false" />
+      <Column Name="TaxValue" Type="System.Decimal" DbType="Decimal(10,3) NOT NULL" CanBeNull="false" />
+      <Column Name="Tax" Type="System.Decimal" DbType="Decimal(10,3) NOT NULL" CanBeNull="false" />
+      <Column Name="Expences" Type="System.Decimal" DbType="Decimal(10,3) NOT NULL" CanBeNull="false" />
+      <Column Name="DescountPercent" Type="System.Decimal" DbType="Decimal(10,3) NOT NULL" CanBeNull="false" />
+      <Column Name="DescountValue" Type="System.Decimal" DbType="Decimal(10,3) NOT NULL" CanBeNull="false" />
+      <Column Name="AccountName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="AccountID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="ExchangeAccountID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="TheDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="DelivaryDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ShippingAddress" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Notes" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Prints" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vewSalesInvoices" Member="vewSalesInvoices">
+    <Type Name="vewSalesInvoice">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="TheNumber" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="ExchangeAccountName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="InvoicesType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Total" Type="System.Decimal" DbType="Decimal(10,3) NOT NULL" CanBeNull="false" />
+      <Column Name="net" Type="System.Decimal" DbType="Decimal(13,3)" CanBeNull="true" />
+      <Column Name="Paid" Type="System.Decimal" DbType="Decimal(10,3) NOT NULL" CanBeNull="false" />
+      <Column Name="Remaing" Type="System.Decimal" DbType="Decimal(10,3) NOT NULL" CanBeNull="false" />
+      <Column Name="TaxValue" Type="System.Decimal" DbType="Decimal(10,3) NOT NULL" CanBeNull="false" />
+      <Column Name="Tax" Type="System.Decimal" DbType="Decimal(10,3) NOT NULL" CanBeNull="false" />
+      <Column Name="Expences" Type="System.Decimal" DbType="Decimal(10,3) NOT NULL" CanBeNull="false" />
+      <Column Name="DescountPercent" Type="System.Decimal" DbType="Decimal(10,3) NOT NULL" CanBeNull="false" />
+      <Column Name="DescountValue" Type="System.Decimal" DbType="Decimal(10,3) NOT NULL" CanBeNull="false" />
+      <Column Name="AccountName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="AccountID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="ExchangeAccountID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="TheDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="DelivaryDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ShippingAddress" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Notes" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Prints" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblUsers" Member="tblUsers">
+    <Type Name="tblUser">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="UserName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="IsDisabled" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="UserPassword" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="UserType" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="SettingsProfileID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="ScreenProfileID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="UserID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="EnterTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="tblUser_tblCurrency" Member="tblCurrencies" ThisKey="ID" OtherKey="UserID" Type="tblCurrency" />
+      <Association Name="tblUser_tblCurrenciesPrice" Member="tblCurrenciesPrices" ThisKey="ID" OtherKey="UserID" Type="tblCurrenciesPrice" />
+      <Association Name="tblUser_tblCurrenciesPricesUpdate" Member="tblCurrenciesPricesUpdates" ThisKey="ID" OtherKey="UserID" Type="tblCurrenciesPricesUpdate" />
+      <Association Name="tblUser_tblDocument" Member="tblDocuments" ThisKey="ID" OtherKey="UserID" Type="tblDocument" />
+      <Association Name="tblUser_tblEntry" Member="tblEntries" ThisKey="ID" OtherKey="UserID" Type="tblEntry" />
+      <Association Name="tblUser_tblReceiving" Member="tblReceivings" ThisKey="ID" OtherKey="UserID" Type="tblReceiving" />
+      <Association Name="tblUser_tblProducts" Member="tblProducts" ThisKey="ID" OtherKey="UserID" Type="tblProducts" />
+      <Association Name="tblUser_tblSpending" Member="tblSpendings" ThisKey="ID" OtherKey="UserID" Type="tblSpending" />
+      <Association Name="tblUser_tblSalesInvoice" Member="tblSalesInvoices" ThisKey="ID" OtherKey="UserID" Type="tblSalesInvoice" />
+      <Association Name="tblUser_tblPurchaseInvoice" Member="tblPurchaseInvoices" ThisKey="ID" OtherKey="UserID" Type="tblPurchaseInvoice" />
+      <Association Name="tblUser_tblSalesInvoicesDetaile" Member="tblSalesInvoicesDetailes" ThisKey="ID" OtherKey="UserID" Type="tblSalesInvoicesDetaile" />
+      <Association Name="tblUser_tblPurchaseInvoicesDetaile" Member="tblPurchaseInvoicesDetailes" ThisKey="ID" OtherKey="UserID" Type="tblPurchaseInvoicesDetaile" />
+      <Association Name="tblUser_tblAccountsDelegation" Member="tblAccountsDelegations" ThisKey="ID" OtherKey="UserID" Type="tblAccountsDelegation" />
+      <Association Name="tblUser_tblSMS_CustomersDirectory" Member="tblSMS_CustomersDirectories" ThisKey="ID" OtherKey="UserID" Type="tblSMS_CustomersDirectory" />
+      <Association Name="tblUser_tblSMS_SendMessage" Member="tblSMS_SendMessages" ThisKey="ID" OtherKey="UserID" Type="tblSMS_SendMessage" />
+      <Association Name="tblUser_tblSMS_SMSMessage" Member="tblSMS_SMSMessages" ThisKey="ID" OtherKey="UserID" Type="tblSMS_SMSMessage" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblSMS_CustomersDirectory" Member="tblSMS_CustomersDirectories">
+    <Type Name="tblSMS_CustomersDirectory">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="AccountID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="MobileNumbers" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Notes" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="UserID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="EnterTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SendSMSWithoutBalance" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="notificationsReceiving" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="notificationsSpending" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="notificationsSales" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="notificationsPurchase" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="tblAccounts_tblSMS_CustomersDirectory" Member="tblAccounts" ThisKey="AccountID" OtherKey="ID" Type="tblAccounts" IsForeignKey="true" />
+      <Association Name="tblUser_tblSMS_CustomersDirectory" Member="tblUser" ThisKey="UserID" OtherKey="ID" Type="tblUser" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblSMS_SendMessage" Member="tblSMS_SendMessages">
+    <Type Name="tblSMS_SendMessage">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TheDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MessageText" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="ReceiverStateID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="ReceiverNumber" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="ReceiverPersonID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="Notes" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="UserID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="EnterTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="tblUser_tblSMS_SendMessage" Member="tblUser" ThisKey="UserID" OtherKey="ID" Type="tblUser" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblSMS_SMSMessages" Member="tblSMS_SMSMessages">
+    <Type Name="tblSMS_SMSMessage">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TheDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MsgText" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
+      <Column Name="MsgLength" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MsgStatus" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Receivers" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Notes" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="UserID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="EnterTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SMSType" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="tblUser_tblSMS_SMSMessage" Member="tblUser" ThisKey="UserID" OtherKey="ID" Type="tblUser" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vewReceiving" Member="vewReceivings">
+    <Type Name="vewReceiving">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="الرقم" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="التاريخ" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="[طريقة القبض]" Member="طريقة_القبض" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="المبلغ" Type="System.Decimal" DbType="Decimal(18,6) NOT NULL" CanBeNull="false" />
+      <Column Name="العملة" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="الصندوق" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[مبلغ الحساب]" Member="مبلغ_الحساب" Type="System.Decimal" DbType="Decimal(18,6) NOT NULL" CanBeNull="false" />
+      <Column Name="[عملة الحساب]" Member="عملة_الحساب" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[اسم الحساب]" Member="اسم_الحساب" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ملاحظات" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="مناولة" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="المستخدم" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="[وقت الإدخال]" Member="وقت_الإدخال" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="الطبعات" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="EntryID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="ExchangeAccountID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.AddReceiving" Method="AddReceiving">
+    <Parameter Name="TheDate" Parameter="theDate" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="TheMethod" Parameter="theMethod" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="Amount" Parameter="amount" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="CurrencyID" Parameter="currencyID" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="AccountID" Parameter="accountID" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="ExchangeAccountID" Parameter="exchangeAccountID" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="Notes" Parameter="notes" Type="System.String" DbType="VarChar(255)" />
+    <Parameter Name="Delivery" Parameter="delivery" Type="System.String" DbType="VarChar(150)" />
+    <Parameter Name="UserID" Parameter="userID" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="DocumentID" Parameter="documentID" Type="System.Int64" DbType="BigInt" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.AddtblSpending" Method="AddtblSpending">
+    <Parameter Name="TheDate" Parameter="theDate" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="TheMethod" Parameter="theMethod" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="Amount" Parameter="amount" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="CurrencyID" Parameter="currencyID" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="AccountID" Parameter="accountID" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="ExchangeAccountID" Parameter="exchangeAccountID" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="Notes" Parameter="notes" Type="System.String" DbType="VarChar(255)" />
+    <Parameter Name="Delivery" Parameter="delivery" Type="System.String" DbType="VarChar(150)" />
+    <Parameter Name="UserID" Parameter="userID" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="DocumentID" Parameter="documentID" Type="System.Int64" DbType="BigInt" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.PROvewDetailedPreviousBalanceSearch" Method="PROvewDetailedPreviousBalanceSearch">
+    <Parameter Name="date" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="AccountNumber" Parameter="accountNumber" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="CurrencieID" Parameter="currencieID" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="date1" Type="System.DateTime" DbType="Date" />
+    <ElementType Name="PROvewDetailedPreviousBalanceSearchResult">
+      <Column Name="مدين" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="دائن" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="العملة" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[نوع المستند]" Member="نوع_المستند" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="التاريخ" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="البيان" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.PROvewDetailedSearch" Method="PROvewDetailedSearch">
+    <Parameter Name="date" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="AccountNumber" Parameter="accountNumber" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="CurrencieID" Parameter="currencieID" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="date1" Type="System.DateTime" DbType="Date" />
+    <ElementType Name="PROvewDetailedSearchResult">
+      <Column Name="مدين" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="دائن" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="العملة" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[نوع المستند]" Member="نوع_المستند" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="التاريخ" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="البيان" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.UPDATEReceiving" Method="UPDATEReceiving">
+    <Parameter Name="TheDate" Parameter="theDate" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Amount" Parameter="amount" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="CurrencyID" Parameter="currencyID" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="AccountID" Parameter="accountID" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="ExchangeAccountID" Parameter="exchangeAccountID" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="Notes" Parameter="notes" Type="System.String" DbType="VarChar(255)" />
+    <Parameter Name="Delivery" Parameter="delivery" Type="System.String" DbType="VarChar(150)" />
+    <Parameter Name="EntriesID" Parameter="entriesID" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="RowVersion" Parameter="rowVersion" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="ID" Parameter="iD" Type="System.Int64" DbType="BigInt" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ExchangePrice" Method="ExchangePrice" IsComposable="true">
+    <Parameter Name="TargetCurrencyID" Parameter="targetCurrencyID" Type="System.Int64" DbType="BigInt" />
+    <Return Type="System.Decimal" />
+  </Function>
+  <Function Name="dbo.Get_Max_TheNumber_Receiving" Method="Get_Max_TheNumber_Receiving" IsComposable="true">
+    <Return Type="System.Int64" />
+  </Function>
+  <Function Name="dbo.Get_Max_TheNumber_Spending" Method="Get_Max_TheNumber_Spending" IsComposable="true">
+    <Return Type="System.Int64" />
+  </Function>
+  <Function Name="dbo.get_Sum_Amount" Method="get_Sum_Amount" IsComposable="true">
+    <Parameter Name="date" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="AccountNumber" Parameter="accountNumber" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="CurrencieID" Parameter="currencieID" Type="System.Int64" DbType="BigInt" />
+    <Return Type="System.Decimal" />
+  </Function>
+  <Function Name="dbo.Get_ValueField" Method="Get_ValueField" IsComposable="true">
+    <Parameter Name="FieldName" Parameter="fieldName" Type="System.String" DbType="VarChar(8000)" />
+    <Parameter Name="SubField" Parameter="subField" Type="System.String" DbType="VarChar(100)" />
+    <Return Type="System.String" />
+  </Function>
+  <Function Name="dbo.UPDATESpending" Method="UPDATESpending">
+    <Parameter Name="TheDate" Parameter="theDate" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Amount" Parameter="amount" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="CurrencyID" Parameter="currencyID" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="AccountID" Parameter="accountID" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="ExchangeAccountID" Parameter="exchangeAccountID" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="Notes" Parameter="notes" Type="System.String" DbType="VarChar(255)" />
+    <Parameter Name="Delivery" Parameter="delivery" Type="System.String" DbType="VarChar(150)" />
+    <Parameter Name="EntriesID" Parameter="entriesID" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="RowVersion" Parameter="rowVersion" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="ID" Parameter="iD" Type="System.Int64" DbType="BigInt" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.AddtblPurchaseInvoices" Method="AddtblPurchaseInvoices">
+    <Parameter Name="TheNumber" Parameter="theNumber" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="InvoicesType" Parameter="invoicesType" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Total" Parameter="total" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="DescountPercent" Parameter="descountPercent" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="DescountValue" Parameter="descountValue" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="Tax" Parameter="tax" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="TaxValue" Parameter="taxValue" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="Paid" Parameter="paid" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="Remaing" Parameter="remaing" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="Expences" Parameter="expences" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="AccountID" Parameter="accountID" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="ExchangeAccountID" Parameter="exchangeAccountID" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="TheDate" Parameter="theDate" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="DelivaryDate" Parameter="delivaryDate" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Notes" Parameter="notes" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="ShippingAddress" Parameter="shippingAddress" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="Prints" Parameter="prints" Type="System.Int32" DbType="Int" />
+    <Parameter Name="UserID" Parameter="userID" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="DocumentID" Parameter="documentID" Type="System.Int64" DbType="BigInt" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.AddtblSalesInvoices" Method="AddtblSalesInvoices">
+    <Parameter Name="TheNumber" Parameter="theNumber" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="InvoicesType" Parameter="invoicesType" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Total" Parameter="total" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="DescountPercent" Parameter="descountPercent" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="DescountValue" Parameter="descountValue" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="Tax" Parameter="tax" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="TaxValue" Parameter="taxValue" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="Paid" Parameter="paid" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="Remaing" Parameter="remaing" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="Expences" Parameter="expences" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="AccountID" Parameter="accountID" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="ExchangeAccountID" Parameter="exchangeAccountID" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="TheDate" Parameter="theDate" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="DelivaryDate" Parameter="delivaryDate" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Notes" Parameter="notes" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="ShippingAddress" Parameter="shippingAddress" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="Prints" Parameter="prints" Type="System.Int32" DbType="Int" />
+    <Parameter Name="UserID" Parameter="userID" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="DocumentID" Parameter="documentID" Type="System.Int64" DbType="BigInt" />
+    <Return Type="System.Int32" />
+  </Function>
+</Database>
